@@ -11,7 +11,7 @@ function Pages() {
                 switch (status) {
                     // Start Stack
                     case "start":
-                        return <Start onClick={onClick} data={data} />;
+                        return <Start onClick={onClick} data={data} setData={setData} />;
 
                     // EI Stack
                     case "EI1":

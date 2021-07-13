@@ -37,6 +37,7 @@ function Layout({ status, title, data, first: { type: firstType, content: firstC
         onClick();
     };
     const setStateData = (type) => {
+        console.log(type);
         switch (type) {
             case "initP":
                 setData({
@@ -75,6 +76,7 @@ function Layout({ status, title, data, first: { type: firstType, content: firstC
             default:
                 break;
         };
+        console.log(data.mbti);
     };
     return (
         <div>

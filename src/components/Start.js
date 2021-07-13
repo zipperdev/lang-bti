@@ -1,11 +1,15 @@
 import React from "react";
 import { Button } from './shared';
 
-function Start({ onClick }) {
+function Start({ onClick, setData }) {
+    const buttonClick = () => {
+        setData({ mbti: "" });
+        onClick();
+    };
     return (
         <div>
             <h1>시작하자!!</h1>
-            <Button onClick={onClick}>시작하기</Button>
+            <Button onClick={buttonClick}>시작하기</Button>
         </div>
     );
 };
