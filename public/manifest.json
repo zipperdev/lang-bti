@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "LangBTI",
+  "name": "LangBTI로 나에게 적합한 프로그래밍 언어를 찾으세요",
   "icons": [
     {
       "src": "favicon.ico",
