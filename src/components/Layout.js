@@ -1,33 +1,44 @@
 import React from "react";
-import { Button } from "./shared";
+import styled from "styled-components";
+import { Title, WayButton } from "./shared";
+
+const QuestionTitle = styled(Title)`
+    width: 100%;
+    font-size: 30px;
+    margin-top: 90px;
+`;
+
+const Container = styled.div`
+    width: 100%;
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`;
 
 // Type: "initP", "initN", "P", "N", "calcP", "calcN";
 
-function Layout({ status, title, data, first: { type: firstType, content: firstContent }, second: { type: secondType, content: secondContent }, onClick, setData }) {
-    const statusList = [data?.ei, data?.sn, data?.tf, data?.jp];
+function Layout({ status, title, data, first: { type: firstType, content: { title: firstTitle, image: firstImage } }, second: { type: secondType, content: { title: secondTitle, image: secondImage } }, onClick, setData }) {
     const statusNameList = ["ei", "sn", "tf", "jp"];
-    let currentStateVar = null;
-    let listStatusName = null;
+    let statusData = null;
+    let statusName = null;
     switch (status.slice(0, 2)) {
         case "EI":
-            currentStateVar = statusList[0];
-            listStatusName = statusNameList[0];
+            statusName = statusNameList[0];
             break;
         case "SN":
-            currentStateVar = statusList[1];
-            listStatusName = statusNameList[1];
+            statusName = statusNameList[1];
             break;
         case "TF":
-            currentStateVar = statusList[2];
-            listStatusName = statusNameList[2];
+            statusName = statusNameList[2];
             break;
         case "JP":
-            currentStateVar = statusList[3];
-            listStatusName = statusNameList[3];
+            statusName = statusNameList[3];
             break;
         default:
             break;
     };
+    statusData = data[statusName];
     const firstWay = () => {
         setStateData(firstType);
         onClick();
@@ -37,53 +48,53 @@ function Layout({ status, title, data, first: { type: firstType, content: firstC
         onClick();
     };
     const setStateData = (type) => {
-        console.log(type);
         switch (type) {
             case "initP":
                 setData({
                     mbti: data.mbti, 
-                    [listStatusName]: 1
+                    [statusName]: 1
                 });
                 break;
             case "initN":
                 setData({
                     mbti: data.mbti, 
-                    [listStatusName]: -1
+                    [statusName]: -1
                 });
                 break;
             case "P":
                 setData({
                     mbti: data.mbti, 
-                    [listStatusName]: currentStateVar + 1
+                    [statusName]: statusData + 1
                 });
                 break;
             case "N":
                 setData({
                     mbti: data.mbti, 
-                    [listStatusName]: currentStateVar - 1
+                    [statusName]: statusData - 1
                 });
                 break;
             case "calcP":
                 setData({
-                    mbti: data.mbti + (currentStateVar + 1 >= 1 ? status.slice(0, 1) : status.slice(1, 2))
+                    mbti: data.mbti + (statusData + 1 >= 1 ? status.slice(0, 1) : status.slice(1, 2))
                 });
                 break;
             case "calcN":
                 setData({
-                    mbti: data.mbti + (currentStateVar - 1 >= 1 ? status.slice(0, 1) : status.slice(1, 2))
+                    mbti: data.mbti + (statusData - 1 >= 1 ? status.slice(0, 1) : status.slice(1, 2))
                 });
                 break;
             default:
                 break;
         };
-        console.log(data.mbti);
     };
     return (
-        <div>
-            <h1>{title}</h1>
-            <Button onClick={firstWay}>{firstContent}</Button>
-            <Button onClick={secondWay}>{secondContent}</Button>
-        </div>
+        <>
+            <QuestionTitle>{title}</QuestionTitle>
+            <Container>
+                <WayButton onClick={firstWay} title={firstTitle} image={firstImage} />
+                <WayButton onClick={secondWay} title={secondTitle} image={secondImage} />
+            </Container>
+        </>
     );
 };
 

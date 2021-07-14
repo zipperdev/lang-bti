@@ -1,8 +1,64 @@
 import React from "react";
+import styled from "styled-components";
 import { Button } from "./shared";
 
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`;
+
+const Image = styled.img`
+    width: 140px;
+    height: 140px;
+`;
+
+const ImageContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    height: 210px;
+    margin-top: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+`;
+
+const MbtiCode = styled.h1`
+    font-size: 12px;
+    margin-top: 10px;
+`;
+
+const Title = styled.h1`
+    font-size: 24px;
+    margin-top: 6px;
+`;
+
+const RetryButton = styled(Button)`
+    margin-top: 100px;
+`;
+
 function Result({ data, onClick }) {
-    const mbtiCodeResult = {ISTJ: "go", ISFJ: "python", INFJ: "javascript", INTJ: "typescript", ISTP: "html", ISFP: "css", INFP: "perl", INTP: "rust", ESTP: "ruby", ESFP: "java", ENFP: "kotiln", ENTP: "swift", ESTJ: "haskell", ESFJ: "cacpp", ENFJ: "cs", ENTJ: "php"};
+    const mbtiCodeResult = {
+        ISTJ: "perl", 
+        ISFJ: "go", 
+        INFJ: "php", 
+        INTJ: "rust", 
+        ISTP: "javascript", 
+        ISFP: "haskell", 
+        INFP: "python", 
+        INTP: "css", 
+        ESTP: "java", 
+        ESFP: "cacpp", 
+        ENFP: "swift", 
+        ENTP: "html", 
+        ESTJ: "typescript", 
+        ESFJ: "ruby", 
+        ENFJ: "kotiln", 
+        ENTJ: "cs", 
+    };
     const title = {
         go: "Go", 
         python: "Python", 
@@ -21,14 +77,16 @@ function Result({ data, onClick }) {
         cs: "C#", 
         php: "PHP", 
     };
-    const image = require(`../contents/${String(data.mbti)}.svg`).default;
+    const image = require(`../contents/private/${String(data.mbti)}.svg`).default;
     return (
-        <div>
-            <h1>{data.mbti}</h1>
-            <h1>{title[mbtiCodeResult[data.mbti]]}</h1>
-            <img src={image} alt="" />
-            <Button onClick={onClick}>홈으로 돌아가기!!!</Button>
-        </div>
+        <Container>
+            <ImageContainer>
+                <Image src={image} alt="" />
+            </ImageContainer>
+            <MbtiCode>{data.mbti}</MbtiCode>
+            <Title>{title[mbtiCodeResult[data.mbti]]}</Title>
+            <RetryButton onClick={onClick}>다시 하기</RetryButton>
+        </Container>
     );
 };
 

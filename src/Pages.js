@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Result from "./components/Result";
 import Start from "./components/Start";
 import PageContext from "./constants/page";
+import image from "./contents/startBackdrop.jpg";
 
 function Pages() {
     return (
@@ -17,10 +18,16 @@ function Pages() {
                     case "EI1":
                         return <Layout status={status} data={data} title="첫번째 문제!!" onClick={onClick} setData={setData} first={{
                             type: "initP", 
-                            content: "A"
+                            content: {
+                                title: "이거슨 첫번째 선택지오.", 
+                                image
+                            }
                         }} second={{
                             type: "initN", 
-                            content: "B"
+                            content: {
+                                title: "저거슨 두번째 선택지로다.", 
+                                image
+                            }
                         }} />;
 
                     case "EI2":
