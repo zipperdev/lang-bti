@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Title = styled.h1`
     text-align: center;
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 100;
 `;
 
@@ -54,6 +54,8 @@ const StyledProgress = styled.div`
     height: 100%;
     background-color: #ff9900;
     transition: 0.3s;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 `;
 const StyledProgressBar = styled.div`
     position: absolute;
