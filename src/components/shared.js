@@ -24,6 +24,7 @@ const StyledWayButton = styled.button`
     height: 150px;
     background-image: url(${props => props.image});
     background-repeat: no-repeat;
+    background-position: 10%;
     background-size: 100%;
     border-radius: 10px;
     margin-top: 30px;
@@ -42,9 +43,7 @@ const StyledWayButtonTitle = styled.h1`
     color: #343434;
     background-color: #ffffff;
 `;
-
-
-export const WayButton = ({ onClick, title, image }) => <StyledWayButton onClick={onClick} image={image} key={title}>
+export const WayButton = ({ className, onClick, title, image }) => <StyledWayButton className={className} onClick={onClick} image={image} key={title}>
     <StyledWayButtonTitle>{title}</StyledWayButtonTitle>
 </StyledWayButton>;
 
@@ -68,4 +67,4 @@ const StyledProgressBar = styled.div`
 `;
 export const ProgressBar = ({ count }) => <StyledProgressBar>
     <StyledProgress count={count} />
-</StyledProgressBar>
+</StyledProgressBar>;

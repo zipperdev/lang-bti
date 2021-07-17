@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Title, WayButton } from "./shared";
 
@@ -14,11 +14,21 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+    & > button {
+        transition: 0.1s opacity;
+    }
+    & > button.fadeIn {
+        opacity: 1;
+    }
+    & > button.fadeOut {
+        opacity: 0;
+    }
 `;
 
 // Type: "initP", "initN", "P", "N", "calcP", "calcN";
 
-function Layout({ status, title, data, first: { type: firstType, content: { title: firstTitle, image: firstImage } }, second: { type: secondType, content: { title: secondTitle, image: secondImage } }, onClick, setData }) {
+function Layout({ status, title, data, first: { type: firstType, content: { title: firstTitle } }, second: { type: secondType, content: { title: secondTitle } }, onClick, setData }) {
+    const [ classes, setClasses ] = useState("fadeIn");
     const statusNameList = ["ei", "sn", "tf", "jp"];
     let statusData = null;
     let statusName = null;
@@ -86,13 +96,17 @@ function Layout({ status, title, data, first: { type: firstType, content: { titl
             default:
                 break;
         };
+        setClasses("fadeOut");
+        setTimeout(() => {
+            setClasses("fadeIn");
+        }, 50);
     };
     return (
         <>
             <QuestionTitle>{title}</QuestionTitle>
             <Container>
-                <WayButton onClick={firstWay} title={firstTitle} image={firstImage} />
-                <WayButton onClick={secondWay} title={secondTitle} image={secondImage} />
+                <WayButton className={classes} onClick={firstWay} title={firstTitle} image={require(`../contents/public/${status}-1.jpg`).default} />
+                <WayButton className={classes} onClick={secondWay} title={secondTitle} image={require(`../contents/public/${status}-2.jpg`).default} />
             </Container>
         </>
     );
